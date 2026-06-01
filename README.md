@@ -1,1 +1,63 @@
 # DS-TASK-
+Crypto Fear & Greed — Trader Performance Analysis
+Does market sentiment affect how crypto traders perform? This project digs into that question using two real datasets — a record of trades and daily Fear & Greed sentiment labels — to find out whether market mood changes how traders behave and how much money they make.
+
+Background
+The Crypto Fear & Greed Index scores market sentiment daily from 0 (Extreme Fear) to 100 (Extreme Greed). The common belief is that retail traders get emotional during extreme sentiment periods — they chase pumps during Greed and panic-sell during Fear. This project tests whether that actually shows up in the data.
+
+What We Analysed
+
+Does average profit differ across sentiment categories?
+Do traders change their behaviour (trade size, frequency, direction) based on sentiment?
+Are certain types of traders more affected by sentiment than others?
+
+
+Files in This Repo
+├── DS_TASK.ipynb              # Main analysis notebook
+├── Dataset      
+├──
+├── charts/                    # All output charts saved here
+│   
+│   
+│ 
+├── summary.md                 # One page write-up
+└── README.md                  # This file
+
+How to Run
+Step 1 — Clone the repo
+git clone https://github.com/yourname/yourrepo.git
+cd yourrepo
+Step 2 — Install dependencies
+pip install pandas matplotlib scipy
+Step 3 — Add the data files
+Place fear_greed_index.csv and historical_data.csv in the root folder of the repo (same level as the notebook).
+Step 4 — Run the notebook
+Open DS_TASK.ipynb in Jupyter or VS Code and run all cells from top to bottom. The notebook is structured so every cell runs cleanly in order — no skipping needed.
+
+Data Overview
+DatasetRowsKey Columnsfear_greed_index.csv~1,800date, value, classificationhistorical_data.csv60,000+Timestamp, Account, Closed PnL, Size USD, Direction
+The two datasets are joined on date. Each trade gets the sentiment label for the day it was placed.
+
+Key Findings
+Sentiment affects non-profitable traders the most
+Profitable traders stay fairly consistent regardless of whether the market is fearful or greedy. Non-profitable traders, however, show their worst losses specifically on Greed days.
+Traders go bigger and longer on Greed days
+Average position size and long ratio both rise during Greed and Extreme Greed periods. This suggests traders are chasing momentum rather than managing risk — and it shows up in their PnL.
+Consistent traders are largely immune to sentiment
+Traders with a stable win rate over time perform well across all sentiment categories. Their results don't swing with the market, which suggests they follow a fixed process rather than reacting emotionally.
+Inconsistent traders are the most exposed
+Traders with a volatile win rate show the biggest performance swings during extreme sentiment periods. This group is most at risk during Extreme Fear and Extreme Greed days.
+
+Strategy Recommendations
+1. Reduce exposure on Greed days
+Non-profitable traders average their worst PnL during Greed and Extreme Greed. If your overall track record is negative, consider halving your position size on those days until your win rate improves.
+2. Don't overtrade during extreme sentiment
+Trade count goes up during extreme periods but outcomes get worse. Stick to your normal daily trade count — more trades during emotional market conditions does not mean more profit.
+3. Build a process, not a reaction
+The clearest dividing line in this dataset is not between Fear and Greed days — it's between traders who follow a consistent process and those who don't. Focus on repeatability over market-timing.
+
+Limitations
+
+Sentiment is one label per day — all trades that day share the same classification regardless of what time they were placed
+Trader segments (profitable, consistent, frequent) are defined on the full dataset, so this is a descriptive analysis, not a predictive one
+Outlier trades can pull mean PnL significantly — findings should be read as directional patterns, not precise numbers
